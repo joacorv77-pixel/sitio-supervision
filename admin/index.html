@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Contenido - Supervisión 035</title>
+  
+  <!-- Este script muestra la ventana de inicio de sesión -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+</head>
+<body>
+  <!-- Aquí se cargará el panel de administración de Decap CMS -->
+
+  <!-- Se carga el script principal del CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
+  <!-- A continuación, se define la configuración y se inicializa el CMS -->
+  <script>
+    var config = {
+      backend: {
+        name: 'git-gateway',
+        branch: 'main',
+      },
+      media_folder: "static/images/uploads",
+      public_folder: "/images/uploads",
+      collections: [
+        {
+          name: "avisos",
+          label: "Avisos",
+          folder: "_data/avisos",
+          create: true,
+          slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
+          fields: [
+            {label: "Título del Aviso", name: "title", widget: "string"},
+            {label: "Fecha de Publicación", name: "date", widget: "datetime"},
+            {label: "Cuerpo del Aviso", name: "body", widget: "markdown"}
+          ]
+        }
+      ]
+    };
+
+    // Inicializa el CMS con la configuración definida arriba
+    CMS.init({ config });
+  </script>
+</body>
+</html>
