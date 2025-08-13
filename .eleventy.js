@@ -10,6 +10,9 @@ module.exports = function(eleventyConfig) {
     "md" 
   ]);
 
+  // AÑADIDO: Ignora el archivo portal.html para evitar conflictos.
+  eleventyConfig.ignores.add("portal.html");
+
   // Copia la carpeta 'admin' completa al sitio final.
   eleventyConfig.addPassthroughCopy("admin");
 
