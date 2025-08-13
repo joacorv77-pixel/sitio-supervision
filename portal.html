@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supervisión Escolar Zona 035</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Fondo de la sección principal con un degradado sutil */
+        .hero-bg {
+            background-color: #f8fafc;
+            background-image:
+                linear-gradient(to top, rgba(249, 250, 251, 0.9), rgba(249, 250, 251, 0.9)),
+                url('https://placehold.co/1200x800/e2e8f0/a0aec0?text=Aula+Moderna');
+            background-size: cover;
+            background-position: center;
+        }
+        /* Efecto de borde superior en las tarjetas */
+        .card-border-top {
+            border-top: 4px solid;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Encabezado y Navegación -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-3">
+                <div class="flex items-center">
+                    <!-- Logo actualizado -->
+                    <div class="bg-blue-800 p-2 rounded-lg mr-4">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-lg text-blue-900">Supervisión Escolar 035</h1>
+                        <p class="text-xs text-gray-500">Educación Primaria General</p>
+                    </div>
+                </div>
+                <!-- Menú para escritorio -->
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="#" class="font-semibold text-blue-800 hover:text-blue-600 transition-colors">Inicio</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Recursos</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Avisos</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Contacto</a>
+                    <!-- ENLACE ACTUALIZADO -->
+                    <a href="generador-menu.html" class="bg-teal-600 text-white font-bold py-2 px-5 rounded-lg hover:bg-teal-700 transition-colors text-sm shadow-sm hover:shadow-md">
+                        Generador de Constancias
+                    </a>
+                </nav>
+                <!-- Botón de menú para móvil -->
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-700 hover:text-blue-600 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menú desplegable para móvil -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200">
+            <a href="#" class="block py-3 px-4 text-sm font-semibold text-blue-800 bg-blue-50">Inicio</a>
+            <a href="#" class="block py-3 px-4 text-sm text-gray-600 hover:bg-gray-100">Recursos</a>
+            <a href="#" class="block py-3 px-4 text-sm text-gray-600 hover:bg-gray-100">Avisos</a>
+            <a href="#" class="block py-3 px-4 text-sm text-gray-600 hover:bg-gray-100">Contacto</a>
+            <!-- ENLACE ACTUALIZADO -->
+            <a href="generador-menu.html" class="block py-3 px-4 text-sm font-bold text-white bg-teal-600 hover:bg-teal-700">Generador de Constancias</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección de Bienvenida -->
+        <section class="hero-bg">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 text-center">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-blue-900">Portal de la Zona Escolar 035</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-700 leading-relaxed">Un espacio digital para facilitar la comunicación y optimizar la gestión directiva. Aquí encontrarán recursos, formatos y avisos importantes para nuestra comunidad educativa.</p>
+                <div class="mt-8">
+                    <p class="text-md text-gray-800 font-semibold">Mtro. Joaquín Rodríguez Vázquez</p>
+                    <p class="text-sm text-gray-600">Supervisor de Zona</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Accesos Directos -->
+        <section class="bg-white py-20">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold text-gray-900">Accesos Directos</h3>
+                    <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Las herramientas y secciones más importantes a un solo clic.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Tarjeta 1: Generador de Constancias -->
+                    <!-- ENLACE ACTUALIZADO -->
+                    <a href="generador-menu.html" class="group block bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 card-border-top border-blue-600">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                        </div>
+                        <h4 class="font-bold text-xl mb-2 text-gray-900">Generador de Constancias</h4>
+                        <p class="text-gray-600">Cree las constancias de liberación y no adeudo de forma rápida y sencilla.</p>
+                    </a>
+                    <!-- Tarjeta 2: Recursos y Formatos -->
+                    <a href="#" class="group block bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 card-border-top border-teal-600">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-teal-100 text-teal-600 mb-4 group-hover:bg-teal-600 group-hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" /></svg>
+                        </div>
+                        <h4 class="font-bold text-xl mb-2 text-gray-900">Recursos y Formatos</h4>
+                        <p class="text-gray-600">Descargue guías, manuales, y formatos oficiales de la zona escolar.</p>
+                    </a>
+                    <!-- Tarjeta 3: Calendario Escolar -->
+                    <a href="#" class="group block bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 card-border-top border-amber-500">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-amber-100 text-amber-600 mb-4 group-hover:bg-amber-500 group-hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                        </div>
+                        <h4 class="font-bold text-xl mb-2 text-gray-900">Calendario Escolar</h4>
+                        <p class="text-gray-600">Consulte las fechas importantes, CTE, y periodos vacacionales.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Avisos Recientes -->
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold text-gray-900">Avisos Recientes</h3>
+                    <p class="text-gray-600 mt-2">Manténgase informado sobre las últimas noticias y comunicados.</p>
+                </div>
+                <div class="space-y-8 max-w-4xl mx-auto">
+                    <!-- Aviso 1 -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-600 hover:shadow-xl transition-shadow">
+                        <p class="text-sm text-gray-500 mb-2">Publicado: 12 de agosto, 2025</p>
+                        <h4 class="font-bold text-lg mb-2 text-blue-800">Reunión de Consejo Técnico Escolar - Fase Intensiva</h4>
+                        <p class="text-gray-700 leading-relaxed">Se convoca a todos los directores a la reunión de CTE que se llevará a cabo los días 18, 19 y 20 de agosto en la sede de la supervisión. Favor de confirmar asistencia.</p>
+                    </div>
+                    <!-- Aviso 2 -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-teal-600 hover:shadow-xl transition-shadow">
+                        <p class="text-sm text-gray-500 mb-2">Publicado: 10 de agosto, 2025</p>
+                        <h4 class="font-bold text-lg mb-2 text-teal-800">Entrega de Planeaciones Didácticas</h4>
+                        <p class="text-gray-700 leading-relaxed">La fecha límite para la entrega de las planeaciones didácticas del primer trimestre es el día 29 de agosto. Pueden subirlas a través del portal de recursos.</p>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <a href="#" class="text-blue-700 font-semibold hover:underline">Ver todos los avisos &rarr;</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="bg-gray-900 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 text-center">
+            <p class="font-bold text-lg">Supervisión de Zona de Educación Primaria General Num. 035</p>
+            <p class="text-sm text-gray-400 mt-2">Tlapacoyan, Veracruz</p>
+            <p class="text-xs text-gray-500 mt-6">&copy; 2025 - Todos los derechos reservados. Un sitio para la comunidad educativa.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Script para el menú móvil
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

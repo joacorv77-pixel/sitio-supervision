@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONSTANCIA DE SERVICIOS</title>
+
+    <!-- Se importa la librería para generar PDFs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- =================================================================
+         INICIA SECCIÓN DE ESTILOS (CSS)
+         ================================================================= -->
+    <style>
+        /* --- Estilos Generales --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #1c1e21;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #0056b3;
+            text-align: center;
+            border-bottom: 2px solid #f0f2f5;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        /* --- Estilos para Agrupar Secciones --- */
+        fieldset {
+            border: 1px solid #ccd0d5;
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+        }
+
+        legend {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            padding: 0 10px;
+        }
+        
+        /* --- Estilos para los Campos del Formulario --- */
+        .campo-formulario {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #4b4f56;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccd0d5;
+            border-radius: 6px;
+            font-size: 1em;
+            box-sizing: border-box; 
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #0056b3;
+            box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
+        }
+
+        /* --- Estilo del Botón --- */
+        .boton-contenedor {
+            text-align: right; 
+        }
+        
+        button {
+            background-color: #0056b3;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #004494;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="generador-menu.html" style="text-decoration: none; color: #0056b3; font-weight: bold; display: block; margin-bottom: 20px;">&larr; Volver al Menú</a>
+
+        <h1>CONSTANCIA DE SERVICIOS</h1>
+
+        <form id="constanciaForm">
+
+            <fieldset>
+                <legend>Datos del Documento</legend>
+                <div class="campo-formulario">
+                    <label for="lugar">Lugar de expedición:</label>
+                    <input type="text" id="lugar" name="lugar" required>
+                </div>
+                <div class="campo-formulario">
+                    <label for="fecha">Fecha de expedición:</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Datos del Personal</legend>
+                <div class="campo-formulario">
+                    <label for="nombreDocente">Nombre del Docente/Directivo:</label>
+                    <input type="text" id="nombreDocente" name="nombreDocente" required>
+                </div>
+                 <div class="campo-formulario">
+                    <label for="puesto">Puesto desempeñado:</label>
+                    <input type="text" id="puesto" name="puesto" placeholder="Ej. Docente Frente a Grupo" required>
+                </div>
+                <div class="campo-formulario">
+                    <label for="periodo">Periodo que se certifica:</label>
+                    <input type="text" id="periodo" name="periodo" placeholder="Ej. del 16 de agosto de 2020 a la fecha" required>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Datos de la Escuela</legend>
+                 <div class="campo-formulario">
+                    <label for="nombreDirector">Nombre del Director(a) que expide:</label>
+                    <input type="text" id="nombreDirector" name="nombreDirector" required>
+                </div>
+                <div class="campo-formulario">
+                    <label for="nombreEscuela">Nombre de la Escuela:</label>
+                    <input type="text" id="nombreEscuela" name="nombreEscuela" required>
+                </div>
+                <div class="campo-formulario">
+                    <label for="claveEscuela">Clave de Centro de Trabajo (CCT):</label>
+                    <input type="text" id="claveEscuela" name="claveEscuela" required>
+                </div>
+            </fieldset>
+            
+            <div class="boton-contenedor">
+                <button type="button" id="generarPdfBtn">Generar PDF</button>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- =================================================================
+         INICIA SECCIÓN DE JAVASCRIPT
+         ================================================================= -->
+    <script>
+        document.getElementById('generarPdfBtn').addEventListener('click', function() {
+
+            // --- 1. OBTENER DATOS DEL FORMULARIO ---
+            const data = {
+                lugar: document.getElementById('lugar').value,
+                fecha: document.getElementById('fecha').value,
+                nombreDirector: document.getElementById('nombreDirector').value,
+                nombreEscuela: document.getElementById('nombreEscuela').value,
+                claveEscuela: document.getElementById('claveEscuela').value,
+                nombreDocente: document.getElementById('nombreDocente').value,
+                puesto: document.getElementById('puesto').value,
+                periodo: document.getElementById('periodo').value
+            };
+
+            // --- 2. PREPARAR LA IMAGEN DEL MEMBRETE ---
+            const membreteUrl = 'https://i.imgur.com/EDW2iok.png'; 
+
+            const img = new Image();
+            img.crossOrigin = 'Anonymous'; 
+            
+            img.onload = function() {
+                generarElPDF(this); 
+            };
+            
+            img.onerror = function() {
+                console.error("No se pudo cargar la imagen del membrete.");
+                generarElPDF(null); 
+            };
+
+            img.src = membreteUrl;
+
+            // --- 3. FUNCIÓN PRINCIPAL PARA GENERAR EL PDF ---
+            function generarElPDF(membreteImg) {
+                
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF('p', 'mm', 'letter');
+                const margen = 20;
+                const anchoMaximoTexto = doc.internal.pageSize.getWidth() - margen * 2;
+                let y = 20;
+
+                // Añadir membrete si se cargó
+                if (membreteImg) {
+                    const imgWidth = 90;
+                    const imgHeight = (membreteImg.height * imgWidth) / membreteImg.width;
+                    doc.addImage(membreteImg, 'PNG', margen, y, imgWidth, imgHeight);
+                    y += imgHeight + 10;
+                }
+
+                doc.setFont('times', 'normal');
+                doc.setFontSize(12);
+
+                // --- INICIO DE FUNCIONES DE JUSTIFICACIÓN AVANZADA ---
+                function printLine(lineWords, x, y, maxWidth, isLastLine) {
+                    let totalWordsWidth = 0;
+                    lineWords.forEach(word => {
+                        doc.setFont('times', word.style === 'bold' ? 'bold' : 'normal');
+                        totalWordsWidth += doc.getTextWidth(word.text);
+                    });
+
+                    let spacing = doc.getTextWidth(' ');
+                    if (!isLastLine && lineWords.length > 1) {
+                        spacing = (maxWidth - totalWordsWidth) / (lineWords.length - 1);
+                    }
+
+                    let cursorX = x;
+                    lineWords.forEach(word => {
+                        doc.setFont('times', word.style === 'bold' ? 'bold' : 'normal');
+                        doc.text(word.text, cursorX, y);
+                        cursorX += doc.getTextWidth(word.text) + spacing;
+                    });
+                }
+
+                function printJustifiedAdvancedText(fragments, x, y, maxWidth, lineHeight) {
+                    let allWords = [];
+                    fragments.forEach(fragment => {
+                        fragment.text.split(/\s+/).forEach(word => {
+                            if (word.length > 0) {
+                                allWords.push({ text: word, style: fragment.style });
+                            }
+                        });
+                    });
+
+                    let currentLine = [];
+                    let currentLineWidth = 0;
+                    const spaceWidth = doc.getTextWidth(' ');
+                    let cursorY = y;
+
+                    for (let i = 0; i < allWords.length; i++) {
+                        const word = allWords[i];
+                        doc.setFont('times', word.style === 'bold' ? 'bold' : 'normal');
+                        const wordWidth = doc.getTextWidth(word.text);
+                        const potentialWidth = currentLineWidth + (currentLine.length > 0 ? spaceWidth : 0) + wordWidth;
+
+                        if (potentialWidth > maxWidth && currentLine.length > 0) {
+                            printLine(currentLine, x, cursorY, maxWidth, false);
+                            cursorY += lineHeight;
+                            currentLine = [word];
+                            currentLineWidth = wordWidth;
+                        } else {
+                            currentLine.push(word);
+                            currentLineWidth += (currentLine.length > 1 ? spaceWidth : 0) + wordWidth;
+                        }
+                    }
+
+                    if (currentLine.length > 0) {
+                        printLine(currentLine, x, cursorY, maxWidth, true);
+                        cursorY += lineHeight;
+                    }
+                    return cursorY;
+                }
+                // --- FIN DE FUNCIONES DE JUSTIFICACIÓN AVANZADA ---
+
+                function formatearFecha(fechaStr) {
+                    if (!fechaStr) return 'FECHA NO ESPECIFICADA';
+                    const fechaObj = new Date(fechaStr + 'T00:00:00');
+                    const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+                    return fechaObj.toLocaleDateString('es-ES', opciones);
+                }
+
+                // --- CONSTRUCCIÓN DEL TEXTO DEL PDF ---
+                doc.setFont('times', 'bold');
+                doc.text("ASUNTO: Constancia de Servicios.", anchoMaximoTexto + margen, y, { align: 'right' });
+                y += 10;
+
+                doc.setFont('times', 'bold');
+                doc.text("A QUIEN CORRESPONDA:", margen, y);
+                y += 15;
+
+                const fragments1 = [
+                    { text: 'El que suscribe, C. Director(a) de la Escuela Primaria "', style: 'normal' },
+                    { text: data.nombreEscuela.toUpperCase(), style: 'bold' },
+                    { text: `" con C.C.T. `, style: 'normal' },
+                    { text: data.claveEscuela.toUpperCase(), style: 'bold' },
+                    { text: `, por medio del presente hace constar que el (la) C. `, style: 'normal' },
+                    { text: data.nombreDocente.toUpperCase(), style: 'bold' },
+                    { text: `, labora en esta institución educativa desempeñando el puesto de `, style: 'normal' },
+                    { text: data.puesto.toUpperCase(), style: 'bold' },
+                    { text: ` durante el periodo comprendido `, style: 'normal' },
+                    { text: data.periodo, style: 'bold' },
+                    { text: `.`, style: 'normal' }
+                ];
+                y = printJustifiedAdvancedText(fragments1, margen, y, anchoMaximoTexto, 5);
+                y += 5;
+
+                const fragments2 = [{ text: `Durante el tiempo de sus servicios, ha demostrado ser una persona responsable, dedicada y comprometida con su labor educativa, sin nota desfavorable en su expediente.`, style: 'normal' }];
+                y = printJustifiedAdvancedText(fragments2, margen, y, anchoMaximoTexto, 5);
+                y += 5;
+
+                const fragments3 = [
+                    { text: `Se extiende la presente para los fines que al interesado(a) convengan, en ${data.lugar}, a los `, style: 'normal' },
+                    { text: formatearFecha(data.fecha), style: 'bold' },
+                    { text: `.`, style: 'normal' }
+                ];
+                y = printJustifiedAdvancedText(fragments3, margen, y, anchoMaximoTexto, 5);
+                y += 25;
+
+                doc.setFont('times', 'bold');
+                doc.text("ATENTAMENTE", doc.internal.pageSize.getWidth() / 2, y, { align: 'center' });
+                y += 25;
+
+                doc.text(data.nombreDirector.toUpperCase(), doc.internal.pageSize.getWidth() / 2, y, { align: 'center' });
+                y += 5;
+                doc.setFont('times', 'normal');
+                doc.text("DIRECTOR(A) DE LA ESCUELA", doc.internal.pageSize.getWidth() / 2, y, { align: 'center' });
+
+                doc.save(`Constancia_Servicios_${data.nombreDocente.replace(/\s/g, '_')}.pdf`);
+            }
+        });
+    </script>
+
+</body>
+</html>

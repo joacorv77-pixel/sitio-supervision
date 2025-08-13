@@ -1,0 +1,16 @@
+{
+  "name": "sitio-supervision-035",
+  "version": "1.0.0",
+  "description": "Sitio web para la Supervisión Escolar 035",
+  "main": "index.js",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "keywords": [],
+  "author": "Mtro. Joaquín Rodríguez Vázquez",
+  "license": "ISC",
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}

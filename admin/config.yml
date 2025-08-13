@@ -1,0 +1,24 @@
+# Archivo de configuración para Decap CMS
+
+# Backend: Le dice al CMS cómo conectarse a su sitio en Netlify.
+backend:
+  name: git-gateway
+  branch: main # O 'master', dependiendo de la rama principal de su repositorio.
+
+# Media: Dónde se guardarán las imágenes si las suben en un aviso.
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+
+# Collections: Define los tipos de contenido que se pueden crear.
+# En este caso, solo tendremos una colección: "Avisos".
+collections:
+  - name: "avisos" # Nombre interno para la colección
+    label: "Avisos" # Nombre que se verá en el panel
+    folder: "_data/avisos" # Carpeta donde se guardarán los archivos de los avisos
+    create: true # Permite crear nuevos avisos
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Formato para el nombre del archivo
+    fields: # Los campos que tendrá el formulario para cada aviso
+      - {label: "Título del Aviso", name: "title", widget: "string"}
+      - {label: "Fecha de Publicación", name: "date", widget: "datetime"}
+      - {label: "Cuerpo del Aviso", name: "body", widget: "markdown"}
+
